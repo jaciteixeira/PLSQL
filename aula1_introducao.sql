@@ -25,29 +25,31 @@ DECLARE
     vl3 NUMBER := 1;
 BEGIN
     total  := vl1 + vl2 + vl3;
-    DBMS_OUTPUT.PUT_LINE(total);
+    DBMS_OUTPUT.PUT_LINE('A somatória é :'||total);
 END;
 /
 
 --EXERCIO 3
 DECLARE 
-    vlr NUMBER := 1;
+    vlr NUMBER :=5;
     ant NUMBER ;
     suc NUMBER ;
 BEGIN
     suc := vlr+1;
     ant := vlr-1;
-    DBMS_OUTPUT.PUT_LINE(suc);
-    DBMS_OUTPUT.PUT_LINE(ant);
+    DBMS_OUTPUT.PUT_LINE('valor: '||vlr);
+    DBMS_OUTPUT.PUT_LINE('sucessor: '||suc);
+    DBMS_OUTPUT.PUT_LINE('antecessor: '||ant);
 END;
 /
 
 --EXERCIO 4
 DECLARE 
-    meu_salario NUMBER := 2000.00;
-    qtd NUMBER ;
+    meu_salario NUMBER := 5789.00;
+    qtd NUMBER;
 BEGIN
-    qtd;
+    qtd := meu_salario/1412;
+    DBMS_OUTPUT.PUT_LINE('qtd da salario dentro de '||meu_salario||' é '||qtd);
 END;
 /
 
@@ -59,16 +61,17 @@ DECLARE
     media NUMERIC;
 BEGIN
     media := (cp1 + cp2 + cp3) / 3; 
-    DBMS_OUTPUT.PUT_LINE(media);
+    DBMS_OUTPUT.PUT_LINE('Media é: '||media);
 END;
 /
 
 --EXERCICIO 6
 DECLARE 
-    meu_salario NUMBER := 5326.70;
+    meu_salario NUMBER := 4500;
     reajuste NUMBER ; 
+    taxa_reaj NUMBER := 1.05;
 BEGIN
-    reajuste := (meu_salario * 0.05) + meu_salario;
+    reajuste := meu_salario * taxa_reaj;
     DBMS_OUTPUT.PUT_LINE(reajuste);
 END;
 /
