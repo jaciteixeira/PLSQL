@@ -50,3 +50,61 @@ BEGIN
      DBMS_OUTPUT.PUT_LINE(nome);
 END;
 
+SET SERVEROUTPUT ON;
+-- exercicio 2 (v1)
+DECLARE 
+    total number;
+    vl_real number;
+    qtd_dolar number;
+    tx_cambio number := 4.99;
+BEGIN
+    qtd_dolar :=10;
+    vl_real:= qtd_dolar * tx_cambio;
+    dbms_output.put_line('O valor de ' || qtd_dolar || ' dolares em reais é ' || vl_real);
+END;
+
+
+-- exercicio 2 (v2)
+ACCEPT qtd PROMPT 'Digite o valor em dolares:'; 
+-- COM O ACCEPT PODEMOS PERSONALIZAR A MENSAGEM DO PROMPT
+DECLARE 
+    total number;
+    vl_real number;
+    qtd_dolar number;
+    tx_cambio number := 4.99;
+BEGIN
+    qtd_dolar :=&qtd;
+    vl_real:= qtd_dolar * tx_cambio;
+    dbms_output.put_line('O valor de ' || qtd_dolar || ' dolares em reais é ' || vl_real);
+END;
+
+--exercicio 3
+--ACCEPT parc PROMPT 'Digite a quantidade de parcelas:';
+--ACCEPT vlr PROMPT 'Digite o valor da compra:';
+DECLARE 
+    parc number :=&parc;
+    juros number:=0.01 * parc;
+    vl_total number := &vlr * (1 + juros);
+BEGIN
+      -- Exibição dos resultados
+      DBMS_OUTPUT.PUT_LINE('Valor da parcela: R$' || TO_CHAR(vl_total / parc, '999.99'));
+      DBMS_OUTPUT.PUT_LINE('Quantidade de parcelas: ' || parc);
+      DBMS_OUTPUT.PUT_LINE('Valor total da compra: R$' || TO_CHAR(vl_total, '999.99'));
+END;
+
+--exercicio 3 (V PROFESSOR)
+ACCEPT parc PROMPT 'Digite a quantidade de parcelas:';
+ACCEPT vlr PROMPT 'Digite o valor da compra:';
+DECLARE 
+    vl_total number := &vlr ;
+    juros number:=1.01 ;
+    vl_parc number;
+    qtd_parc number :=&parc;
+BEGIN
+    vl_parc:=(vl_total/qtd_parc)*juros;
+    -- Exibição dos resultados
+    DBMS_OUTPUT.PUT_LINE('Valor da parcela: R$' || vl_parc);
+    DBMS_OUTPUT.PUT_LINE('Quantidade de parcelas: ' || qtd_parc);
+    DBMS_OUTPUT.PUT_LINE('Valor total da compra: R$' || vl_total+vl_parc);
+END;
+
