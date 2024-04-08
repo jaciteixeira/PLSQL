@@ -57,3 +57,26 @@ BEGIN
     CLOSE prod_cursor;
 END;
 
+--------------------------------
+-- ATRIBUTOS NOS CURSORES
+--------------------------------
+DECLARE 
+    CURSOR prod_cursor(id_prod INTEGER) IS
+        SELECT desc_produto, valor_produto FROM produto WHERE id_produto = id_prod;
+    
+    rowp prod_cursor%rowtype;
+    rows_found number :=0;
+BEGIN 
+    for rowp in prod_cursor(100) LOOP
+        IF prod_cursor%FOUND then
+        dbms_output.put_line('Nome: ' || rowp.desc_produto);
+        dbms_output.put_line('Valor: ' || rowp.valor_produto);
+        rows_found := rows_found + 1;
+        ELSE
+            dbms_output.put_line('Nenhum produto encontrado para ID fornecido ');
+        end if;
+    END LOOP;
+    if rows_found = 0 then
+        dbms_output.put_line('Nenhum produto encontrado para ID fornecido ');
+    end if;
+END;
